@@ -1,9 +1,10 @@
-// pages/chat/ui/ChatPage.tsx
+// src/pages/chat/ui/ChatPage.tsx
 import React, { useRef, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useChatViewModel } from "../../model/useChatViewModel";
 import { MessageBubble } from "@/entitties/message/ui/MessageBubble";
 import { SendMessageForm } from "@/features/send-message/ui/SendMessageForm";
+import styles from "./ChatPage.module.scss";
 
 export const ChatPage: React.FC = observer(() => {
   const viewModel = useChatViewModel();
@@ -18,15 +19,15 @@ export const ChatPage: React.FC = observer(() => {
   }, [viewModel.messages]);
 
   return (
-    <div className="chat-container">
-      <header className="chat-header">
+    <div className={styles.container}>
+      <header className={styles.header}>
         <h1>💬 CodeBuddy AI</h1>
         <p>Твой AI-ассистент по коду</p>
       </header>
 
-      <div className="messages-container">
+      <div className={styles.messagesContainer}>
         {viewModel.messages.length === 0 ? (
-          <div className="empty-state">
+          <div className={styles.emptyState}>
             <p>
               👋 Задай вопрос по JavaScript или другому языку программирования
             </p>
@@ -37,10 +38,10 @@ export const ChatPage: React.FC = observer(() => {
           ))
         )}
         {viewModel.isLoading && (
-          <div className="message message-assistant">
-            <div className="message-content">
-              <span className="message-role">🤖 CodeBuddy</span>
-              <div className="typing-indicator">
+          <div className={`${styles.message} ${styles.messageAssistant}`}>
+            <div className={styles.messageContent}>
+              <span className={styles.messageRole}>🤖 CodeBuddy</span>
+              <div className={styles.typingIndicator}>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -49,10 +50,10 @@ export const ChatPage: React.FC = observer(() => {
           </div>
         )}
         {viewModel.error && (
-          <div className="message message-assistant">
-            <div className="message-content error">
-              <span className="message-role">⚠️ Ошибка</span>
-              <p className="message-text">{viewModel.error}</p>
+          <div className={`${styles.message} ${styles.messageAssistant}`}>
+            <div className={`${styles.messageContent} ${styles.error}`}>
+              <span className={styles.messageRole}>⚠️ Ошибка</span>
+              <p className={styles.messageText}>{viewModel.error}</p>
             </div>
           </div>
         )}

@@ -1,0 +1,6 @@
+@use '../../../app/styles/mixins' as *;
+@use '../../../app/styles/variables' as *;
+
+.button {
+  @include gradient-button;
+}

@@ -1,0 +1,39 @@
+// src/features/send-message/ui/SendMessageForm.module.scss
+@use '@/app/styles/variables' as *;
+@use '@/app/styles/mixins' as *;
+
+.container {
+  padding: $spacing-xl $spacing-xxl;
+  background: $bg-white;
+  border-top: 1px solid $border-color;
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-end;
+}
+
+.input {
+  flex: 1;
+  @include text-input;
+  resize: none;
+  min-height: 50px;
+  max-height: 150px;
+}
+
+.button {
+  padding: $spacing-md $spacing-xl;
+  @include gradient-button;
+  height: 50px;
+}
+
+@include mobile {
+  .container {
+    padding: $spacing-md $spacing-lg;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button {
+    height: 44px;
+    width: 100%;
+  }
+}

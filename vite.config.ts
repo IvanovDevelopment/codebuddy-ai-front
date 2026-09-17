@@ -9,4 +9,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Для современного Sass API (Vite 6+)
+        loadPaths: [path.resolve(__dirname, "./src")],
+      },
+    },
+  },
 });

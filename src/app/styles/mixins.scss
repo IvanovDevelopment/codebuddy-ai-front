@@ -1,0 +1,71 @@
+// src/app/styles/mixins.scss
+@use './variables' as *;
+
+// Миксин для адаптивности
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+// Миксин для скругления
+@mixin border-radius($radius: $border-radius) {
+  border-radius: $radius;
+}
+
+// Миксин для теней
+@mixin shadow($opacity: 0.1) {
+  box-shadow: 0 0 20px rgba(0, 0, 0, $opacity);
+}
+
+// Миксин для анимации появления
+@mixin fade-in($delay: 0s) {
+  animation: fadeIn $transition-medium ease-in-out $delay;
+}
+
+// Миксин для градиентных кнопок
+@mixin gradient-button {
+  background: $primary-gradient;
+  color: white;
+  border: none;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-md;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform $transition-fast, opacity $transition-fast;
+
+  &:hover:not(:disabled) {
+    transform: scale(1.02);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Миксин для текстового инпута
+@mixin text-input {
+  padding: $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-md;
+  font-family: $font-family;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
