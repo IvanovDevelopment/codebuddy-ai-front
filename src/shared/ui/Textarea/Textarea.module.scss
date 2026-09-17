@@ -1,0 +1,7 @@
+@use '@/app/styles/mixins.scss' as *;
+@use '@/app/styles/variables.scss' as *;
+
+.textarea {
+  @include text-input;
+  resize: none;
+}

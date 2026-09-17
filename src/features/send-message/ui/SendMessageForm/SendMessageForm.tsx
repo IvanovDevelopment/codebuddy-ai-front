@@ -1,7 +1,7 @@
-// features/send-message/ui/SendMessageForm.tsx
 import React, { useState } from "react";
 import { Button } from "@/shared/ui/Button";
 import { Textarea } from "@/shared/ui/Textarea";
+import styles from "./SendMessageForm.module.scss";
 
 interface SendMessageFormProps {
   onSend: (text: string) => void;
@@ -28,8 +28,9 @@ export const SendMessageForm: React.FC<SendMessageFormProps> = ({
   };
 
   return (
-    <div className="input-container">
+    <div className={styles.container}>
       <Textarea
+        className={styles.input}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyPress={handleKeyPress}
@@ -38,6 +39,7 @@ export const SendMessageForm: React.FC<SendMessageFormProps> = ({
         rows={3}
       />
       <Button
+        className={styles.button}
         onClick={handleSubmit}
         disabled={isLoading || !input.trim()}
         isLoading={isLoading}

@@ -1,0 +1,131 @@
+@use 'sass:color';
+// src/pages/chat/ui/ChatPage.module.scss
+@use '../../../../app/styles/variables' as *;
+@use '../../../../app/styles/mixins' as *;
+
+.container {
+  max-width: $max-width;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: $bg-white;
+  @include shadow;
+}
+
+.header {
+  padding: $spacing-xl $spacing-xxl;
+  background: $primary-gradient;
+  color: white;
+
+  h1 {
+    font-size: $font-size-xl;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: $font-size-md;
+    opacity: 0.9;
+    margin-top: $spacing-xs;
+  }
+}
+
+.messagesContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-xl $spacing-xxl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  background: $bg-light;
+}
+
+.emptyState {
+  text-align: center;
+  margin: auto;
+  color: $text-secondary;
+
+  p {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.message {
+  display: flex;
+  @include fade-in;
+}
+
+.messageAssistant {
+  justify-content: flex-start;
+}
+
+.messageContent {
+  max-width: 70%;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $border-radius;
+  word-wrap: break-word;
+  background: $bg-white;
+  border: 1px solid $border-color;
+  color: $text-primary;
+}
+
+.messageRole {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  opacity: 0.7;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.messageText {
+  font-size: $font-size-md;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.error {
+  border-color: $error-color;
+  background: color.adjust($error-color, $lightness: 45%);
+  color: $error-color;
+}
+
+.typingIndicator {
+  display: flex;
+  gap: 6px;
+  padding: $spacing-xs 0;
+
+  span {
+    width: 8px;
+    height: 8px;
+    background: $text-secondary;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+}
+
+@include mobile {
+  .container {
+    max-width: 100%;
+  }
+
+  .messagesContainer {
+    padding: $spacing-md $spacing-lg;
+  }
+
+  .header {
+    padding: $spacing-lg $spacing-xl;
+  }
+
+  .messageContent {
+    max-width: 85%;
+  }
+}

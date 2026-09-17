@@ -1,22 +1,25 @@
-// entities/message/ui/MessageBubble.tsx
+// src/entities/message/ui/MessageBubble.tsx
 import React from "react";
 import type { Message } from "../../model/types";
+import styles from "./MessageBubble.module.scss";
 
 interface MessageBubbleProps {
   message: Message;
 }
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
+  const isUser = message.role === "user";
+
   return (
     <div
-      className={`message ${message.role === "user" ? "message-user" : "message-assistant"}`}
+      className={`${styles.bubble} ${isUser ? styles.user : styles.assistant}`}
     >
-      <div className="message-content">
-        <span className="message-role">
-          {message.role === "user" ? "🧑‍💻 Вы" : "🤖 CodeBuddy"}
-        </span>
-        <p className="message-text">{message.content}</p>
-        <span className="message-time">
+      <div
+        className={`${styles.content} ${isUser ? styles.userContent : styles.assistantContent}`}
+      >
+        <span className={styles.role}>{isUser ? "🧑‍💻 Вы" : "🤖 CodeBuddy"}</span>
+        <p className={styles.text}>{message.content}</p>
+        <span className={styles.time}>
           {message.timestamp.toLocaleTimeString("ru-RU", {
             hour: "2-digit",
             minute: "2-digit",

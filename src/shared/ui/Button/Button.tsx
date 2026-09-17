@@ -1,5 +1,6 @@
-// shared/ui/Button.tsx
+// src/shared/ui/Button.tsx
 import React from "react";
+import styles from "./Button.module.scss";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
@@ -8,10 +9,19 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: React.FC<ButtonProps> = ({
   children,
   isLoading,
+  className,
   ...props
 }) => {
+  const combinedClassName = [styles.button, className]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <button {...props} disabled={isLoading || props.disabled}>
+    <button
+      className={combinedClassName}
+      disabled={isLoading || props.disabled}
+      {...props}
+    >
       {isLoading ? "⏳ Отправка..." : children}
     </button>
   );
